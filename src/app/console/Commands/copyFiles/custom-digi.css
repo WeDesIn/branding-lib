@@ -1,0 +1,61 @@
+/* Obecné nastavení
+================================================*/
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.sidebar-nav .nav-dropdown-items .nav-link {
+    display: flex;
+}
+
+/* Digihood styl
+================================================*/
+
+.btn-link,
+a {
+    color: #ff817e;
+}
+
+a:hover,
+a:focus {
+    color: #dc6d6a;
+}
+
+.sidebar-pills .nav-link.active,
+.sidebar-pills .nav-link:hover,
+.sidebar-pills .nav-link:hover .nav-icon,
+.sidebar.bg-white .nav-link.active .nav-icon,
+.sidebar.bg-white .nav-link.active:hover .nav-icon,
+.sidebar.sidebar-pills .nav-link.active,
+.sidebar.sidebar-pills .nav-link:hover {
+    color: #ff817e !important;
+}
+
+.page-item.active .page-link {
+    background-color: #ff817e;
+    border-color: #ff817e;
+}
+
+.btn-primary,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #ff817e;
+    border-color: #ff817e;
+}
+
+.btn-primary:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background-color: #dc6d6a;
+    border-color: #dc6d6a;
+    color: #fff;
+}
+
+.pace .pace-progress {
+    background: #dc6d6a;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus,
+.dataTables_wrapper .dataTables_length select:focus,
+.form-control:focus {
+    border-color: #dc6d6a;
+}

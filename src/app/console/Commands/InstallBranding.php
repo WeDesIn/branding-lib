@@ -38,6 +38,13 @@ class InstallBranding extends Command
      * @var array
      */
     protected $backpack_config_files = __DIR__.'/config';
+    
+    /**
+     * cesta k css file 
+     *
+     * @var array
+     */
+    protected $backpack_css_file = __DIR__.'/copyFiles/custom-digi.css';
 
      /**
      * předdefinované heslo
@@ -105,16 +112,29 @@ class InstallBranding extends Command
     protected function copyConfigsFile(){
        try {
             if(File::exists(base_path().'/config/backpack')){
-                $this->warn('DIGI::Původní configurační soubory odstraňeny');
+                $this->warn('DIGI::Původní konfigurační soubory odstraňeny');
                 File::deleteDirectory(base_path().'/config/backpack');
             }
             $copy_config = File::copyDirectory($this->backpack_config_files,base_path().'/config');
             if($copy_config){
-                $this->alert('Configurační soubory vytvořeny');
+                $this->alert('DIGI::Konfigurační soubory vytvořeny');
             }
        } catch (\Throwable $th) {
             $this->errorBlock($th->getMessage());
-       } 
+       }
+
+       try {
+        if(File::exists(base_path().'/build/digihood')){
+            $this->warn('DIGI::Původní css soubory odstraňeny');
+            File::deleteDirectory(base_path().'/build/digihood');
+        }
+        $copy_config = File::copyDirectory($this->backpack_css_file,base_path().'/public/build/digihood');
+        if($copy_config){
+            $this->alert('DIGI::Konfigurační soubory vytvořeny');
+        }
+   } catch (\Throwable $th) {
+        $this->errorBlock($th->getMessage());
+   } 
     }
 }
 
