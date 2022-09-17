@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 class InstallBranding extends Command
 {
-    use \Traits\PrettyCommandOutput;
+    use Traits\DigiCommandOutput;
     /**
      * The name and signature of the console command.
      *
