@@ -82,7 +82,7 @@ class InstallBranding extends Command
         if($choice !== false) {
             try {
                 $this->alert('DIGI::Začinam instalovat laravel/ui');
-              //  exec('composer require laravel/ui');
+                exec('composer require laravel/ui');
                 $this->alert('DIGI::Instalace laravel/ui dokončena');
                 $this->comment('DIGI::Niný prosim použij přikaz "npm install" a "npm run build"');
              
