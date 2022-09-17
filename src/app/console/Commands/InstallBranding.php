@@ -61,8 +61,8 @@ class InstallBranding extends Command
      */
     public function handle()
     {
-        $this->installBackpack();
-        $this->create_users();
+        //$this->installBackpack();
+      //  $this->create_users();
         $this->copyConfigsFile();
          
     }
@@ -104,9 +104,16 @@ class InstallBranding extends Command
 
     protected function copyConfigsFile(){
        try {
-            File::copyDirectory($this->backpack_config_files,base_path().'/config');
+            if(File::exists(base_path().'/config/backpack')){
+                $this->warm('Původní configurační soubory odstraňeny');
+                File::deleteDirectory(base_path().'/config/backpack');
+            }
+            $copy_config = File::copyDirectory($this->backpack_config_files,base_path().'/config');
+            if($copy_config){
+                $this->alert('Configurační soubory vytvořeny');
+            }
        } catch (\Throwable $th) {
-            $this->errorBlock($e->getMessage());
+            $this->errorBlock($th->getMessage());
        } 
     }
 }
