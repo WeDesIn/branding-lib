@@ -71,17 +71,12 @@ class InstallBranding extends Command
         //$this->installBackpack();
         //$this->create_users();
         //$this->copyConfigsFile();
+        //$this->PublishFiles();
         $this->call('vendor:publish', [
-            '--tag' => 'digi-models',
-            '--ansi' => true,
-            '--force' => true,
-            ]);
-            $this->call('vendor:publish', [
-                '--tag' => 'digi-views',
-                '--ansi' => true,
-                '--force' => true,
-                ]);
-         
+            '--provider' => 'Backpack\BackupManager\BackupManagerServiceProvider',
+            '--tag' => 'backup-config',
+            '--tag' => 'lang'
+            ]); 
     }
     protected function installBackpack(){
         $this->info('Instalace backpacku');
@@ -120,7 +115,7 @@ class InstallBranding extends Command
     }
 
     protected function copyConfigsFile(){
-       try {
+        try {
             if(File::exists(base_path().'/config/backpack')){
                 $this->warn('DIGI::Původní konfigurační soubory odstraňeny');
                 File::deleteDirectory(base_path().'/config/backpack');
@@ -129,22 +124,57 @@ class InstallBranding extends Command
             if($copy_config){
                 $this->alert('DIGI::Konfigurační soubory vytvořeny');
             }
-       } catch (\Throwable $th) {
-            $this->errorBlock($th->getMessage());
-       }
+        } catch (\Throwable $th) {
+                $this->errorBlock($th->getMessage());
+        }
 
-       try {
-        if(File::exists(base_path().'/build/digihood')){
-            $this->warn('DIGI::Původní css soubory odstraňeny');
-            File::deleteDirectory(base_path().'/build/digihood');
-        }
-        $copy_config = File::copyDirectory($this->backpack_css_file,base_path().'/public/build/digihood');
-        if($copy_config){
-            $this->alert('DIGI::Konfigurační soubory vytvořeny');
-        }
-   } catch (\Throwable $th) {
-        $this->errorBlock($th->getMessage());
-   } 
+        try {
+            if(File::exists(base_path().'/build/digihood')){
+                $this->warn('DIGI::Původní css soubory odstraňeny');
+                File::deleteDirectory(base_path().'/build/digihood');
+            }
+            $copy_config = File::copyDirectory($this->backpack_css_file,base_path().'/public/build/digihood');
+            if($copy_config){
+                $this->alert('DIGI::Konfigurační soubory vytvořeny');
+            }
+        } catch (\Throwable $th) {
+            $this->errorBlock($th->getMessage());
+        } 
     }
+
+    protected function PublishFiles(){
+        $this->call('vendor:publish', [
+            '--provider' => 'Spatie\Permission\PermissionServiceProvider',
+            '--tag' => 'migrations',
+            ]);
+        $this->call('vendor:publish', [
+            '--provider' => 'Spatie\Permission\PermissionServiceProvider',
+            '--tag' => 'config',
+            ]);
+        $this->call('vendor:publish', [
+            '--provider' => 'Backpack\Settings\SettingsServiceProvider',
+            '--tag' => 'config',
+            ]);
+        $this->call('vendor:publish', [
+            '--provider' => 'Backpack\Settings\SettingsServiceProvider',
+            ]);
+        $this->call('vendor:publish', [
+            '--tag' => 'digi-views',
+            '--ansi' => true,
+            '--force' => true,
+            ]);
+        $this->call('vendor:publish', [
+            '--tag' => 'digi-models',
+            '--ansi' => true,
+            '--force' => true,
+            ]);
+        $this->call('vendor:publish', [
+            '--tag' => 'digi-views',
+            '--ansi' => true,
+            '--force' => true,
+            ]);
+        $this->call('migrate',[]);    
+    }
+    
 }
 
