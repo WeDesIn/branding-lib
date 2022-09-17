@@ -19,7 +19,7 @@ class BrandingServiceProvider extends ServiceProvider {
             // use the vendor configuration file as fallback
             $this->publishes([
                 __DIR__.'/copyFiles' => public_path('vendor/digihood'),
-            ], 'aravel-assets');
+            ], 'laravel-assets');
     }
     public function register()
     {
