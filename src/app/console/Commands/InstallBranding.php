@@ -4,12 +4,7 @@ namespace Digihood\Branding\App\Console\Commands;
 
 
 use Digihood\Branding\BrandingServiceProvider;
-use Carbon\Carbon;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Process;
+use Artisan;
 class InstallBranding extends Command
 {
     use \Backpack\CRUD\app\Console\Commands\Traits\PrettyCommandOutput;
