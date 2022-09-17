@@ -17,5 +17,10 @@
             "name": "Digihood"
         }
     ],
+    "laravel": {
+        "providers": [
+            "Digihood\\Branding\\BackpackServiceProvider"
+        ]
+    },
     "minimum-stability": "dev"
 }
