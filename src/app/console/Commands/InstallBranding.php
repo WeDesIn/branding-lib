@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Artisan;
 use Carbon\Carbon;
 use File;
+
 class InstallBranding extends Command
 {
     use \Backpack\CRUD\app\Console\Commands\Traits\PrettyCommandOutput;
@@ -72,12 +73,24 @@ class InstallBranding extends Command
         $this->create_users();
         $this->copyConfigsFile();
         $this->PublishFiles();
-
+        $this->install_ui();
    
     }
 
     Protected function install_ui(){
-        
+        $choice = $this->confirm('Chceš použit laravel UI ? ',false);
+        if($choice !== false) {
+            try {
+                $this->alert('DIGI::Začinam instalovat laravel/ui');
+              //  exec('composer require laravel/ui');
+                $this->alert('DIGI::Instalace laravel/ui dokončena');
+                $this->comment('DIGI::Niný prosim použij přikaz "npm install" a "npm run build"');
+             
+              
+            } catch (\Throwable$e) {
+                $this->errorBlock($e->getMessage());
+            }
+        }
     }
     protected function installBackpack(){
         $this->info('Instalace backpacku');
@@ -182,9 +195,13 @@ class InstallBranding extends Command
             '--force' => true,
             ]);
         $this->info('DIGI::Migrace');    
-        $this->call('migrate',[]);
+        $this->Migrate();
         $this->alert('DIGI::Publikace dokončena');        
     }
     
+
+    protected function Migrate(){
+        $this->call('migrate',[]);
+    }
 }
 
