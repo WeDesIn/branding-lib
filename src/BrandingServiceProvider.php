@@ -46,7 +46,7 @@ class BrandingServiceProvider extends ServiceProvider {
     }
     public function CopyModels(){
         $this->publishes([
-            __DIR__.'/Models' => base_path('Models'),
+            __DIR__.'/App/Models' => base_path('App/Models'),
         ], 'digi-models');
     }
     public function CopyAssets(){
