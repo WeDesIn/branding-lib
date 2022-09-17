@@ -34,18 +34,8 @@ class InstallBranding extends Command
      */
     public function handle()
     {
-        $this->info('Installing Digihood Branding:', 'Step 1');
-
-        // Publish files
-        $this->progressBlock('Publishing configs');
-        $this->executeArtisanProcess('vendor:publish', [
-            '--provider' => BrandingServiceProvider::class,
-        ]);
-        $this->closeProgressBlock();
-        $this->infoBlock('Installing Digihood Branding:', 'Step 2');
-        $this->progressBlock('Install Backpack');
-        $this->executeArtisanProcess('backpack:install');
-        $this->closeProgressBlock();
+        $this->info('Install backpack');
+        Artisan::call('install:backpack', []);
       
     }
 }
