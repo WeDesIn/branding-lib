@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
 class BrandingServiceProvider extends ServiceProvider {
 
-    use Stats;
+
 
     protected $commands = [
         \Digihood\Branding\App\Console\Commands\installBranding::class,
