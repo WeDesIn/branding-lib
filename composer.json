@@ -4,8 +4,7 @@
     "type": "library",
     "require": {
         "php": "^8.1",
-        "illuminate/support": "10.x-dev",
-        "backpack/crud": "^4.0|^5.0"
+        "backpack/crud": "^5.0"
     },
     "license": "MIT",
     "autoload": {
