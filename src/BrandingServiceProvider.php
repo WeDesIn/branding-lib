@@ -17,34 +17,19 @@ class BrandingServiceProvider extends ServiceProvider {
     {
         $this->setupCustomRoutes($this->app->router);
             // use the vendor configuration file as fallback
-    $this->mergeConfigFrom(__DIR__.'/config/backpack/crud.php', 'backpack.crud');
-    $this->mergeConfigFrom(__DIR__.'/config/backpack/base.php', 'backpack.base');
-    $this->mergeConfigFromOperationsDirectory();
-
+       
     }
     public function register()
     {
         if ($this->app->runningInConsole()) {
             $this->commands($this->commands);
         }
+        $backpack_config_files = [__DIR__.'/config' => config_path()];
+        $this->publishes($backpack_config_files, 'config');
+
     }
 
-    protected function mergeConfigFromOperationsDirectory()
-    {
-        $operationConfigs = scandir(__DIR__.'/config/backpack/operations/');
-        $operationConfigs = array_diff($operationConfigs, ['.', '..']);
-
-        if (! count($operationConfigs)) {
-            return;
-        }
-
-        foreach ($operationConfigs as $configFile) {
-            $this->mergeConfigFrom(
-                __DIR__.'/config/backpack/operations/'.$configFile,
-                'backpack.operations.'.substr($configFile, 0, strrpos($configFile, '.'))
-            );
-        }
-    }
+   
     /**
      * Load custom routes file.
      *

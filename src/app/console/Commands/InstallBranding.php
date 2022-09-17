@@ -17,7 +17,7 @@ class InstallBranding extends Command
      */
     protected $signature = 'install:Branding';
     protected $digihoodMasters = [
-        'josef' => 'josef','milan' => 'milan','filip' => 'filip ','jan' => 'jan'];
+        'josef' => 'josef','milan' => 'milan','filip' => 'filip','jan' => 'jan'];
   
     protected $defaultPassword = 'Digihood';
     /**
