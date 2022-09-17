@@ -7,7 +7,7 @@ use Illuminate\Routing\Router;
 class BrandingServiceProvider extends ServiceProvider {
 
     protected $commands = [
-        Digihood\Branding\App\Console\Commands\installBranding::class,
+        \Digihood\Branding\App\Console\Commands\installBranding::class,
     ];
     public $routeFilePath = '/routes/web.php';
     
