@@ -4,6 +4,7 @@ namespace Digihood\Branding\App\Console\Commands;
 
 
 use Digihood\Branding\BrandingServiceProvider;
+use Illuminate\Console\Command;
 use Artisan;
 class InstallBranding extends Command
 {
