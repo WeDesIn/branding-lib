@@ -37,7 +37,7 @@ class InstallBranding extends Command
         $this->info('Installing Digihood Branding:', 'Step 1');
 
         // Publish files
-        $this->progressBlock('Publishing configs, ');
+        $this->progressBlock('Publishing configs');
         $this->executeArtisanProcess('vendor:publish', [
             '--provider' => BrandingServiceProvider::class,
         ]);
@@ -46,6 +46,6 @@ class InstallBranding extends Command
         $this->progressBlock('Install Backpack');
         $this->executeArtisanProcess('backpack:install');
         $this->closeProgressBlock();
-        return 1;
+      
     }
 }
