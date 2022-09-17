@@ -37,10 +37,9 @@ class InstallBranding extends Command
         $this->info('Installing Digihood Branding:', 'Step 1');
 
         // Publish files
-        $this->progressBlock('Publishing configs, views, js and css files');
+        $this->progressBlock('Publishing configs, ');
         $this->executeArtisanProcess('vendor:publish', [
             '--provider' => BrandingServiceProvider::class,
-            '--tag' => 'minimum',
         ]);
         $this->closeProgressBlock();
         $this->infoBlock('Installing Digihood Branding:', 'Step 2');
