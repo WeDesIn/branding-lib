@@ -18,7 +18,7 @@ class BrandingServiceProvider extends ServiceProvider {
         public function register()
         {
             if ($this->app->runningInConsole()) {
-                $this->commands($commands);
+                $this->commands($this->commands);
             }
         }
 
