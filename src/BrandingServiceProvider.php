@@ -9,11 +9,16 @@ class BrandingServiceProvider extends ServiceProvider {
     protected $commands = [
         \Digihood\Branding\App\Console\Commands\installBranding::class,
     ];
-    public $routeFilePath = '/routes/web.php';
+    public $routeFilePath = __DIR__.'/routes/web.php';
     
         public function boot(\Illuminate\Routing\Router $router)
         {
             $this->setupCustomRoutes($this->app->router);
+              // use the vendor configuration file as fallback
+        $this->mergeConfigFrom(__DIR__.'/config/backpack/crud.php', 'backpack.crud');
+        $this->mergeConfigFrom(__DIR__.'/config/backpack/base.php', 'backpack.base');
+        $this->mergeConfigFromOperationsDirectory();
+
         }
         public function register()
         {
@@ -31,9 +36,10 @@ class BrandingServiceProvider extends ServiceProvider {
      */
     public function setupCustomRoutes(Router $router)
     {
+    
         // if the custom routes file is published, register its routes
-        if (file_exists(base_path().$this->routeFilePath)) {
-            $this->loadRoutesFrom(base_path().$this->routeFilePath);
+        if (file_exists($this->routeFilePath)) {
+            $this->loadRoutesFrom($this->routeFilePath);
         }
     }
 
