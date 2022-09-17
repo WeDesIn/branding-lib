@@ -3,7 +3,7 @@
 namespace Digihood\Branding\App\Console\Commands;
 
 use Illuminate\Console\Command;
-
+use Digihood\Branding\BrandingServiceProvider;
 class InstallBranding extends Command
 {
     /**
@@ -27,7 +27,19 @@ class InstallBranding extends Command
      */
     public function handle()
     {
-        \Artisan::call('backpack:install');
+        $this->infoBlock('Installing Digihood Branding:', 'Step 1');
+
+        // Publish files
+        $this->progressBlock('Publishing configs, views, js and css files');
+        $this->executeArtisanProcess('vendor:publish', [
+            '--provider' => BrandingServiceProvider::class,
+            '--tag' => 'minimum',
+        ]);
+        $this->closeProgressBlock();
+        $this->infoBlock('Installing Digihood Branding:', 'Step 2');
+        $this->progressBlock('Install Backpack');
+        $this->executeArtisanProcess('backpack:install');
+        $this->closeProgressBlock();
         return 1;
     }
 }
