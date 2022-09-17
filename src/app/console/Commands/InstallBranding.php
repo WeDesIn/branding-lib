@@ -60,7 +60,7 @@ class InstallBranding extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Nainstaluje backpack, vytvoří digi učty,vypublishuje soubory';
 
     /**
      * Execute the console command.
