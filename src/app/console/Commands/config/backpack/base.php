@@ -43,7 +43,7 @@ return [
     // CSS files that are loaded in all pages, using Laravel's asset() helper
     'styles' => [
         'packages/backpack/base/css/bundle.css', // has primary color electric purple (backpack default)
-        'vendor/digihood/custom-admin.css', // has primary color blue
+        'vendor/digihood/custom-digi.css', // has primary color blue
           
         // Here's what's inside the bundle:
         // 'packages/@digitallyhappy/backstrap/css/style.min.css',
