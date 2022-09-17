@@ -3,7 +3,7 @@
 namespace Digihood\Branding;
 
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Routing\Router;
 class BrandingServiceProvider extends ServiceProvider {
 
 
