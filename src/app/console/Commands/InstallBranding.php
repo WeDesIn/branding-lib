@@ -2,8 +2,14 @@
 
 namespace Digihood\Branding\App\Console\Commands;
 
-use Illuminate\Console\Command;
+
 use Digihood\Branding\BrandingServiceProvider;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Process\Process;
 class InstallBranding extends Command
 {
     use \Traits\PrettyCommandOutput;
@@ -28,7 +34,7 @@ class InstallBranding extends Command
      */
     public function handle()
     {
-        $this->infoBlock('Installing Digihood Branding:', 'Step 1');
+        $this->info('Installing Digihood Branding:', 'Step 1');
 
         // Publish files
         $this->progressBlock('Publishing configs, views, js and css files');
