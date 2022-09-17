@@ -26,6 +26,7 @@ class BrandingServiceProvider extends ServiceProvider {
         }
         $this->CopyAssets();
         $this->CopyModels();
+        $this->CopyViews();
 
     }
 
@@ -44,9 +45,14 @@ class BrandingServiceProvider extends ServiceProvider {
             $this->loadRoutesFrom($this->routeFilePath);
         }
     }
+    public function CopyViews(){
+        $this->publishes([
+            __DIR__.'/resources/views/vendor' => base_path('resources/views/vendor'),
+        ], 'digi-views');
+    }
     public function CopyModels(){
         $this->publishes([
-            __DIR__.'/App/Models' => base_path('App/Models'),
+            __DIR__.'/app/Models' => base_path('App/Models'),
         ], 'digi-models');
     }
     public function CopyAssets(){

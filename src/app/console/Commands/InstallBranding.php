@@ -68,12 +68,19 @@ class InstallBranding extends Command
      */
     public function handle()
     {
-        $this->installBackpack();
-        $this->create_users();
-        $this->copyConfigsFile();
+        //$this->installBackpack();
+        //$this->create_users();
+        //$this->copyConfigsFile();
         $this->call('vendor:publish', [
-            '--tag' => 'digi-models'
+            '--tag' => 'digi-models',
+            '--ansi' => true,
+            '--force' => true,
             ]);
+            $this->call('vendor:publish', [
+                '--tag' => 'digi-views',
+                '--ansi' => true,
+                '--force' => true,
+                ]);
          
     }
     protected function installBackpack(){
