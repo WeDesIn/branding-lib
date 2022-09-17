@@ -35,7 +35,7 @@ class InstallBranding extends Command
     public function handle()
     {
         $this->info('Instalace backpacku');
-       // $this->call('backpack:install', []);
+        $this->call('backpack:install', []);
         $this->alert('Instalace backpacku Dokončena');
         $this->create_users();
          
