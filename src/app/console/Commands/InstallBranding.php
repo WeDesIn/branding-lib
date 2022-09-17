@@ -61,8 +61,8 @@ class InstallBranding extends Command
      */
     public function handle()
     {
-        //$this->installBackpack();
-      //  $this->create_users();
+        $this->installBackpack();
+        $this->create_users();
         $this->copyConfigsFile();
          
     }
