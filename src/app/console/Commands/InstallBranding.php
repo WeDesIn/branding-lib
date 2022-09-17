@@ -68,15 +68,16 @@ class InstallBranding extends Command
      */
     public function handle()
     {
-        //$this->installBackpack();
-        //$this->create_users();
-        //$this->copyConfigsFile();
-        //$this->PublishFiles();
-        $this->call('vendor:publish', [
-            '--provider' => 'Backpack\BackupManager\BackupManagerServiceProvider',
-            '--tag' => 'backup-config',
-            '--tag' => 'lang'
-            ]); 
+        $this->installBackpack();
+        $this->create_users();
+        $this->copyConfigsFile();
+        $this->PublishFiles();
+
+   
+    }
+
+    Protected function install_ui(){
+        
     }
     protected function installBackpack(){
         $this->info('Instalace backpacku');
@@ -108,7 +109,7 @@ class InstallBranding extends Command
             if($next_user == 'ano'){
                  $this->create_users();
             } 
-            
+            $this->alert('Přidaní uživatelů dokončeno');  
         } catch (\Throwable$e) {
             $this->errorBlock($e->getMessage());
         }
@@ -143,6 +144,7 @@ class InstallBranding extends Command
     }
 
     protected function PublishFiles(){
+        $this->alert('DIGI::Začinam publikovat soubory');
         $this->call('vendor:publish', [
             '--provider' => 'Spatie\Permission\PermissionServiceProvider',
             '--tag' => 'migrations',
@@ -159,6 +161,12 @@ class InstallBranding extends Command
             '--provider' => 'Backpack\Settings\SettingsServiceProvider',
             ]);
         $this->call('vendor:publish', [
+            '--provider' => 'Backpack\BackupManager\BackupManagerServiceProvider',
+            '--tag' => [
+                'backup-config','lang'
+                ]
+            ]); 
+        $this->call('vendor:publish', [
             '--tag' => 'digi-views',
             '--ansi' => true,
             '--force' => true,
@@ -173,7 +181,9 @@ class InstallBranding extends Command
             '--ansi' => true,
             '--force' => true,
             ]);
-        $this->call('migrate',[]);    
+        $this->info('DIGI::Migrace');    
+        $this->call('migrate',[]);
+        $this->alert('DIGI::Publikace dokončena');        
     }
     
 }
