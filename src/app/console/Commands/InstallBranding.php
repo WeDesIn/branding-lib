@@ -7,19 +7,46 @@ use Digihood\Branding\BrandingServiceProvider;
 use Illuminate\Console\Command;
 use Artisan;
 use Carbon\Carbon;
+use File;
 class InstallBranding extends Command
 {
     use \Backpack\CRUD\app\Console\Commands\Traits\PrettyCommandOutput;
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
+
     protected $signature = 'install:Branding';
+
+    /**
+     * jména předdefinovanych jmen pro uživatele.
+     *
+     * @var array
+     */
+
     protected $digihoodMasters = [
-        'josef' => 'josef','milan' => 'milan','filip' => 'filip','jan' => 'jan'];
-  
+        'josef' => 'josef',
+        'milan' => 'milan',
+        'filip' => 'filip',
+        'jan' => 'jan'
+    ];
+     /**
+     * cesta k config složce 
+     *
+     * @var array
+     */
+    protected $backpack_config_files = __DIR__.'/config';
+
+     /**
+     * předdefinované heslo
+     *
+     * @var array
+     */
+
     protected $defaultPassword = 'Digihood';
+
     /**
      * The console command description.
      *
@@ -34,13 +61,16 @@ class InstallBranding extends Command
      */
     public function handle()
     {
+        $this->installBackpack();
+        $this->create_users();
+        $this->copyConfigsFile();
+         
+    }
+    protected function installBackpack(){
         $this->info('Instalace backpacku');
         $this->call('backpack:install', []);
         $this->alert('Instalace backpacku Dokončena');
-        $this->create_users();
-         
     }
-
     protected function create_users(){
         $choise = $this->choice('Kdo vytvaří projekt?',$this->digihoodMasters);
         $userClass = config('backpack.base.user_model_fqn', 'App\Models\User');
@@ -70,6 +100,14 @@ class InstallBranding extends Command
         } catch (\Throwable$e) {
             $this->errorBlock($e->getMessage());
         }
+    }
+
+    protected function copyConfigsFile(){
+       try {
+            File::copyDirectory($this->backpack_config_files,base_path().'/config');
+       } catch (\Throwable $th) {
+            $this->errorBlock($e->getMessage());
+       } 
     }
 }
 

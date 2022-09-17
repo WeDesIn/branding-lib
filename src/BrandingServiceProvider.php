@@ -24,8 +24,7 @@ class BrandingServiceProvider extends ServiceProvider {
         if ($this->app->runningInConsole()) {
             $this->commands($this->commands);
         }
-        $backpack_config_files = [__DIR__.'/config' => config_path()];
-        $this->publishes($backpack_config_files, 'config');
+       
 
     }
 
