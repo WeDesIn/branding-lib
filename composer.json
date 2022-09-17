@@ -17,10 +17,12 @@
             "name": "Digihood"
         }
     ],
-    "laravel": {
-        "providers": [
-            "Digihood\\Branding\\BrandingServiceProvider"
-        ]
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Digihood\\Branding\\BrandingServiceProvider"
+            ]
+        }
     },
     "minimum-stability": "dev"
 }
