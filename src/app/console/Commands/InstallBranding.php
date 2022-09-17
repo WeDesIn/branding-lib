@@ -72,7 +72,7 @@ class InstallBranding extends Command
         $this->alert('Instalace backpacku Dokončena');
     }
     protected function create_users(){
-        $choise = $this->choice('Kdo vytvaří projekt?',$this->digihoodMasters);
+        $choise = $this->choice('DIGI::Kdo vytvaří projekt?',$this->digihoodMasters);
         $userClass = config('backpack.base.user_model_fqn', 'App\Models\User');
         $userModel = new $userClass();
         try {
@@ -92,7 +92,7 @@ class InstallBranding extends Command
 
             $userModel->insert($user->toArray());
             $this->info('Uživatel vytvořen');
-            $next_user =$this->ask('Chcete přidat dalšího Digi uživatele?','ne');
+            $next_user =$this->ask('DIGI::Chcete přidat dalšího Digi uživatele?','ne');
             if($next_user == 'ano'){
                  $this->create_users();
             } 
@@ -105,7 +105,7 @@ class InstallBranding extends Command
     protected function copyConfigsFile(){
        try {
             if(File::exists(base_path().'/config/backpack')){
-                $this->warm('Původní configurační soubory odstraňeny');
+                $this->warn('DIGI::Původní configurační soubory odstraňeny');
                 File::deleteDirectory(base_path().'/config/backpack');
             }
             $copy_config = File::copyDirectory($this->backpack_config_files,base_path().'/config');
