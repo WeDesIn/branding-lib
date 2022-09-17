@@ -71,6 +71,9 @@ class InstallBranding extends Command
         $this->installBackpack();
         $this->create_users();
         $this->copyConfigsFile();
+        $this->call('vendor:publish', [
+            '--tag' => 'digi-models'
+            ]);
          
     }
     protected function installBackpack(){

@@ -17,16 +17,15 @@ class BrandingServiceProvider extends ServiceProvider {
     {
         $this->setupCustomRoutes($this->app->router);
             // use the vendor configuration file as fallback
-            $this->publishes([
-                __DIR__.'/copyFiles' => public_path('vendor/digihood'),
-            ], 'laravel-assets');
+           
     }
     public function register()
     {
         if ($this->app->runningInConsole()) {
             $this->commands($this->commands);
         }
-       
+        $this->CopyAssets();
+        $this->CopyModels();
 
     }
 
@@ -44,6 +43,16 @@ class BrandingServiceProvider extends ServiceProvider {
         if (file_exists($this->routeFilePath)) {
             $this->loadRoutesFrom($this->routeFilePath);
         }
+    }
+    public function CopyModels(){
+        $this->publishes([
+            __DIR__.'/Models' => base_path('Models'),
+        ], 'digi-models');
+    }
+    public function CopyAssets(){
+        $this->publishes([
+            __DIR__.'/copyFiles' => public_path('vendor/digihood'),
+        ], 'laravel-assets');
     }
 
 
