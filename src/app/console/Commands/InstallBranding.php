@@ -31,7 +31,8 @@ class InstallBranding extends Command
     public function handle()
     {
         $this->info('Install backpack');
-        Artisan::call('backpack:install', []);
+        $this->call('backpack:install', []);
+        echo $this->arguments();
       
     }
 }
