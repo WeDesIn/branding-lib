@@ -6,16 +6,20 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
 class BrandingServiceProvider extends ServiceProvider {
 
-
+    protected $commands = [
+        Digihood\Branding\App\Console\Commands\installBranding::class,
+    ];
     public $routeFilePath = '/routes/web.php';
-
+    
         public function boot(\Illuminate\Routing\Router $router)
         {
             $this->setupCustomRoutes($this->app->router);
         }
         public function register()
         {
-
+            if ($this->app->runningInConsole()) {
+                $this->commands($commands);
+            }
         }
 
 
@@ -32,4 +36,6 @@ class BrandingServiceProvider extends ServiceProvider {
             $this->loadRoutesFrom(base_path().$this->routeFilePath);
         }
     }
-    }
+
+
+}
