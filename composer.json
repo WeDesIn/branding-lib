@@ -19,7 +19,7 @@
     ],
     "laravel": {
         "providers": [
-            "Digihood\\Branding\\BackpackServiceProvider"
+            "Digihood\\Branding\\BrandingServiceProvider"
         ]
     },
     "minimum-stability": "dev"
