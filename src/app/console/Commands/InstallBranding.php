@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Digihood\Branding\BrandingServiceProvider;
 class InstallBranding extends Command
 {
+    use Traits\PrettyCommandOutput;
     /**
      * The name and signature of the console command.
      *
