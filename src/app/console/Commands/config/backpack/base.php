@@ -24,7 +24,7 @@ return [
     // ----
 
     // Project name. Shown in the window title.
-    'project_name' => 'Seo tools Admin Panel',
+    'project_name' => 'Digihood Admin Panel',
 
     // When clicking on the admin panel's top-left logo/name,
     // where should the user be redirected?
@@ -262,7 +262,7 @@ return [
 
     // The guard that protects the Backpack admin panel.
     // If null, the config.auth.defaults.guard value will be used.
-    'guard' => null,
+    'guard' => 'backpack',
 
     // The password reset configuration for Backpack.
     // If null, the config.auth.defaults.passwords value will be used.
