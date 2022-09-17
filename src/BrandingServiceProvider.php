@@ -28,8 +28,8 @@ class BrandingServiceProvider extends ServiceProvider {
     public function setupCustomRoutes(Router $router)
     {
         // if the custom routes file is published, register its routes
-        if (file_exists(base_path().$this->customRoutesFilePath)) {
-            $this->loadRoutesFrom(base_path().$this->customRoutesFilePath);
+        if (file_exists(base_path().$this->routeFilePath)) {
+            $this->loadRoutesFrom(base_path().$this->routeFilePath);
         }
     }
     }
