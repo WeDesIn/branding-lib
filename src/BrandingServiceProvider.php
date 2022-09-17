@@ -9,7 +9,7 @@ class BrandingServiceProvider extends ServiceProvider {
 
     public $routeFilePath = '/routes/web.php';
 
-        public function boot()
+        public function boot(\Illuminate\Routing\Router $router)
         {
             $this->setupCustomRoutes($this->app->router);
         }
