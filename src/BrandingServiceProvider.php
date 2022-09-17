@@ -17,7 +17,9 @@ class BrandingServiceProvider extends ServiceProvider {
     {
         $this->setupCustomRoutes($this->app->router);
             // use the vendor configuration file as fallback
-       
+            $this->publishes([
+                __DIR__.'/copyFiles' => public_path('vendor/digihood'),
+            ], 'aravel-assets');
     }
     public function register()
     {
